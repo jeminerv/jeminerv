@@ -19,9 +19,11 @@ jobs:
           github_user_name: jeminerv
           outputs: dist/github-contribution-grid-snake.svg
 
-      - name: Push snake to branch
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: output
+          name: snake
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
